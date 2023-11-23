@@ -3546,6 +3546,10 @@ h2.title {
           animation: left 0.4s 0.2s linear both;
 }
 
+.benefit__text-mob {
+  display: none !important;
+}
+
 ._icon-up {
   position: fixed;
   bottom: 10px;
@@ -7411,6 +7415,14 @@ button.swiper-pagination-bullet {
 
   .benefit {
     padding-bottom: 30px;
+  }
+
+  .benefit__text-desk {
+    display: none !important;
+  }
+
+  .benefit__text-mob {
+    display: block !important;
   }
 }
 
