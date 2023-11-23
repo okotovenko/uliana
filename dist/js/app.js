@@ -1870,6 +1870,7 @@
                     setAutoplayYoutube: true,
                     classes: {
                         popup: "popup",
+                        popupWrapper: "popup__wrapper",
                         popupContent: "popup__content",
                         popupActive: "popup_show",
                         bodyActive: "popup-show"
@@ -2069,61 +2070,6 @@
             }
         }
         flsModules.popup = new Popup({});
-        class MousePRLX {
-            constructor(props, data = null) {
-                let defaultConfig = {
-                    init: true,
-                    logging: true
-                };
-                this.config = Object.assign(defaultConfig, props);
-                if (this.config.init) {
-                    const paralaxMouse = document.querySelectorAll("[data-prlx-mouse]");
-                    if (paralaxMouse.length) {
-                        this.paralaxMouseInit(paralaxMouse);
-                        this.setLogging(`Проснулся, слежу за объектами: (${paralaxMouse.length})`);
-                    } else this.setLogging("Нет ни одного объекта. Сплю...zzZZZzZZz...");
-                }
-            }
-            paralaxMouseInit(paralaxMouse) {
-                paralaxMouse.forEach((el => {
-                    const paralaxMouseWrapper = el.closest("[data-prlx-mouse-wrapper]");
-                    const paramСoefficientX = el.dataset.prlxCx ? +el.dataset.prlxCx : 100;
-                    const paramСoefficientY = el.dataset.prlxCy ? +el.dataset.prlxCy : 100;
-                    const directionX = el.hasAttribute("data-prlx-dxr") ? -1 : 1;
-                    const directionY = el.hasAttribute("data-prlx-dyr") ? -1 : 1;
-                    const paramAnimation = el.dataset.prlxA ? +el.dataset.prlxA : 50;
-                    let positionX = 0, positionY = 0;
-                    let coordXprocent = 0, coordYprocent = 0;
-                    setMouseParallaxStyle();
-                    if (paralaxMouseWrapper) mouseMoveParalax(paralaxMouseWrapper); else mouseMoveParalax();
-                    function setMouseParallaxStyle() {
-                        const distX = coordXprocent - positionX;
-                        const distY = coordYprocent - positionY;
-                        positionX += distX * paramAnimation / 1e3;
-                        positionY += distY * paramAnimation / 1e3;
-                        el.style.cssText = `transform: translate3D(${directionX * positionX / (paramСoefficientX / 10)}%,${directionY * positionY / (paramСoefficientY / 10)}%,0);`;
-                        requestAnimationFrame(setMouseParallaxStyle);
-                    }
-                    function mouseMoveParalax(wrapper = window) {
-                        wrapper.addEventListener("mousemove", (function(e) {
-                            const offsetTop = el.getBoundingClientRect().top + window.scrollY;
-                            if (offsetTop >= window.scrollY || offsetTop + el.offsetHeight >= window.scrollY) {
-                                const parallaxWidth = window.innerWidth;
-                                const parallaxHeight = window.innerHeight;
-                                const coordX = e.clientX - parallaxWidth / 2;
-                                const coordY = e.clientY - parallaxHeight / 2;
-                                coordXprocent = coordX / parallaxWidth * 100;
-                                coordYprocent = coordY / parallaxHeight * 100;
-                            }
-                        }));
-                    }
-                }));
-            }
-            setLogging(message) {
-                this.config.logging ? FLS(`[PRLX Mouse]: ${message}`) : null;
-            }
-        }
-        flsModules.mousePrlx = new MousePRLX({});
         let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
             const targetBlockElement = document.querySelector(targetBlock);
             if (targetBlockElement) {
@@ -2351,11 +2297,11 @@
                         const popup = form.dataset.popupMessage;
                         popup ? flsModules.popup.open(popup) : null;
                     }
-                }), 1e3);
+                }), 100);
                 formValidate.formClean(form);
                 formLogging(`Форма надіслана!`);
-                flsModules.popup.close("#popup");
-                length = 0;
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                length = 0;
             }
             function formLogging(message) {
                 FLS(`[Форми]: ${message}`);
@@ -2364,11 +2310,91 @@
         var air_datepicker = __webpack_require__(545);
         var air_datepicker_default = __webpack_require__.n(air_datepicker);
         const index_es = air_datepicker_default();
+        let buttonOk = {
+            content: "Ок",
+            className: "custom-button-classname-ok",
+            onClick: dp => {
+                picker.hide();
+            }
+        };
+        let buttonClear = {
+            content: "Скасувати",
+            className: "custom-button-classname-clear",
+            onClick: dp => {
+                let selectedDate = document.querySelector(".-selected-");
+                if (selectedDate) {
+                    selectedDate.classList.remove("-selected-");
+                    picker.hide();
+                    picker.clear();
+                }
+                picker.hide();
+            }
+        };
+        let buttonOkPlan = {
+            content: "Ок",
+            className: "custom-button-classname-ok",
+            onClick: dp => {
+                pickerPlan.hide();
+            }
+        };
+        let buttonClearPlan = {
+            content: "Скасувати",
+            className: "custom-button-classname-clear",
+            onClick: dp => {
+                let selectedDate = document.querySelector(".-selected-");
+                if (selectedDate) {
+                    selectedDate.classList.remove("-selected-");
+                    pickerPlan.hide();
+                    pickerPlan.clear();
+                }
+                pickerPlan.hide();
+            }
+        };
+        let buttonOkCenter = {
+            content: "Ок",
+            className: "custom-button-classname-ok",
+            onClick: dp => {
+                pickerCenter.hide();
+            }
+        };
+        let buttonClearCenter = {
+            content: "Скасувати",
+            className: "custom-button-classname-clear",
+            onClick: dp => {
+                let selectedDate = document.querySelector(".-selected-");
+                if (selectedDate) {
+                    selectedDate.classList.remove("-selected-");
+                    pickerCenter.hide();
+                    pickerCenter.clear();
+                }
+                pickerCenter.hide();
+            }
+        };
         const picker = new index_es("#datepicker", {
             isMobile: true,
-            autoClose: true,
+            autoClose: false,
             minDate: new Date,
-            buttons: [ "today", "clear" ],
+            weekends: [ 0 ],
+            buttons: [ buttonOk, buttonClear ],
+            locale: {
+                days: [ "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота" ],
+                daysShort: [ "Нед", "Пнд", "Вів", "Срд", "Чтв", "Птн", "Сбт" ],
+                daysMin: [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+                months: [ "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень" ],
+                monthsShort: [ "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру" ],
+                today: "Сьогодні",
+                clear: "Очистити",
+                dateFormat: "dd.MM.yyyy",
+                timeFormat: "HH:mm",
+                firstDay: 1
+            }
+        });
+        const pickerCenter = new index_es("#datepicker-center", {
+            isMobile: true,
+            autoClose: false,
+            minDate: new Date,
+            weekends: [ 0 ],
+            buttons: [ buttonOkCenter, buttonClearCenter ],
             locale: {
                 days: [ "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота" ],
                 daysShort: [ "Нед", "Пнд", "Вів", "Срд", "Чтв", "Птн", "Сбт" ],
@@ -2384,9 +2410,10 @@
         });
         const pickerPlan = new index_es("#datepicker-plan", {
             isMobile: true,
-            autoClose: true,
+            autoClose: false,
             minDate: new Date,
-            buttons: [ "today", "clear" ],
+            weekends: [ 0 ],
+            buttons: [ buttonOkPlan, buttonClearPlan ],
             locale: {
                 days: [ "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота" ],
                 daysShort: [ "Нед", "Пнд", "Вів", "Срд", "Чтв", "Птн", "Сбт" ],
@@ -2402,6 +2429,7 @@
         });
         flsModules.AirDatepicker = picker;
         flsModules.AirDatepicker = pickerPlan;
+        flsModules.AirDatepicker = pickerCenter;
         /*!
  * dist/inputmask
  * https://github.com/RobinHerbots/Inputmask
@@ -6044,6 +6072,9 @@
         var selectorPlan = document.getElementById("tel-plan");
         im = new Inputmask("+38 (099) 999-99-99");
         im.mask(selectorPlan);
+        var selectorCenter = document.getElementById("tel-center");
+        im = new Inputmask("+38 (099) 999-99-99");
+        im.mask(selectorCenter);
         var selectorBottom = document.getElementById("tel-bottom");
         im = new Inputmask("+38 (099) 999-99-99");
         im.mask(selectorBottom);
@@ -9442,14 +9473,6 @@
         };
         const da = new DynamicAdapt("max");
         da.init();
-        function animationElements() {
-            window.addEventListener("load", (function() {
-                let elementsHasDataWatch = this.document.querySelectorAll("._watcher-view");
-                elementsHasDataWatch.forEach((element => {
-                    element.classList.add("animation");
-                }));
-            }));
-        }
         function preloader() {
             window.addEventListener("load", (function() {
                 document.body.classList.add("loaded_hiding");
@@ -9459,12 +9482,14 @@
                 }), 500);
             }));
         }
-        function fff() {
+        function addLabelForForm() {
             let myPhone = document.querySelector("#tel");
             let myPhonePlan = document.querySelector("#tel-plan");
+            let myPhoneCenter = document.querySelector("#tel-center");
             let myPhoneBottom = document.querySelector("#tel-bottom");
             let buttonSubmit = document.querySelector("#button");
             let buttonSubmitPlan = document.querySelector("#button-plan");
+            let buttonSubmitCenter = document.querySelector("#button-center");
             let buttonSubmitBottom = document.querySelector("#button-bottom");
             let length = 0;
             length = 0;
@@ -9490,34 +9515,48 @@
                     buttonSubmitPlan.disabled = false;
                 }
             }));
+            myPhoneCenter.addEventListener("keyup", (function(evt) {
+                if (myPhoneCenter.value.includes("_")) {
+                    msgCenter.textContent = "Введіть коректні дані";
+                    msgCenter.style.color = "#F14545";
+                    buttonSubmitCenter.disabled = true;
+                } else if (!myPhoneCenter.value.includes("_")) {
+                    msgCenter.textContent = "Ваш телефон";
+                    msgCenter.style.color = "#3E6C8F";
+                    buttonSubmitCenter.disabled = false;
+                }
+            }));
             myPhoneBottom.addEventListener("keyup", (function(evt) {
                 if (myPhoneBottom.value.includes("_")) {
                     msgBottom.textContent = "Введіть номер телефону";
+                    msgBottom.style.color = "#F14545";
                     buttonSubmitBottom.disabled = true;
                 } else if (!myPhoneBottom.value.includes("_")) {
-                    msgBottom.textContent = "";
+                    msgBottom.textContent = "Ваш телефон";
+                    msgBottom.style.color = "#3E6C8F";
                     buttonSubmitBottom.disabled = false;
                 }
             }));
         }
         function trackScroll() {
+            var goTopBtn = document.querySelector("._icon-up");
             var scrolled = window.pageYOffset;
             var coords = document.documentElement.clientHeight * 3;
-            const screenWidth = window.screen.width;
-            if (screenWidth < 769) {
-                if (scrolled > coords) goTopBtn.classList.add("active");
-                if (scrolled < coords) goTopBtn.classList.remove("active");
-            }
+            window.screen.width;
+            if (scrolled > coords) goTopBtn.classList.add("active");
+            if (scrolled < coords) goTopBtn.classList.remove("active");
         }
-        function backToTop() {
-            if (window.pageYOffset > 0) {
-                window.scrollBy(0, -20);
-                setTimeout(backToTop, 0);
-            }
-        }
-        var goTopBtn = document.querySelector("._icon-up");
         window.addEventListener("scroll", trackScroll);
-        goTopBtn.addEventListener("click", backToTop);
+        function backToTop() {
+            var goTopBtn = document.querySelector("._icon-up");
+            goTopBtn.addEventListener("click", ToTop);
+            function ToTop() {
+                if (window.pageYOffset > 0) {
+                    window.scrollBy(0, -20);
+                    setTimeout(ToTop, 0);
+                }
+            }
+        }
         window["FLS"] = true;
         isWebp();
         spollers();
@@ -9526,9 +9565,8 @@
             autoHeight: false
         });
         formSubmit();
-        animationElements();
         preloader();
-        fff();
+        addLabelForForm();
         trackScroll();
         backToTop();
     })();
