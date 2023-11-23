@@ -2396,6 +2396,10 @@ h2.title {
           box-shadow: 3px 3.4645135403px 3.4645135403px rgba(12, 79, 85, 0.25);
 }
 
+.swiper-slide__bottom-mob {
+  display: none !important;
+}
+
 .get h2 {
   color: #3E6C8F;
   text-align: center;
@@ -6834,6 +6838,9 @@ button.swiper-pagination-bullet {
   .methods__wrapper :first-child.swiper-slide::before {
     left: 0;
     max-height: 7rem;
+    -webkit-transform: translateY(-150px);
+        -ms-transform: translateY(-150px);
+            transform: translateY(-150px);
   }
 
   .methods__wrapper :first-child.swiper-slide .swiper-slide__top {
@@ -6972,6 +6979,14 @@ button.swiper-pagination-bullet {
     border-bottom-right-radius: 3.75rem;
     border-bottom-left-radius: 3.75rem;
     padding-right: 12px;
+  }
+
+  .swiper-slide__bottom-desk {
+    display: none !important;
+  }
+
+  .swiper-slide__bottom-mob {
+    display: block !important;
   }
 
   .get h2 {
@@ -7199,8 +7214,8 @@ button.swiper-pagination-bullet {
     height: 230px;
     top: -174px;
     left: -33px;
-    -o-object-fit: contain;
-       object-fit: contain;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 
   .comfort__text p {
@@ -7391,7 +7406,7 @@ button.swiper-pagination-bullet {
   }
 
   .benefit__text {
-    max-width: 296px;
+    max-width: 360px;
   }
 
   .benefit {
