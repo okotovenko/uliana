@@ -7,13 +7,31 @@
 <head>
 	<title>uliana-dentist</title>
 	<meta charset="UTF-8">
+	<!-- Google Tag Manager -->
+	<script>
+		(function(w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({
+				'gtm.start': new Date().getTime(),
+				event: 'gtm.js'
+			});
+			var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s),
+				dl = l != 'dataLayer' ? '&l=' + l : '';
+			j.async = true;
+			j.src =
+				'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-5T8SCWML');
+	</script>
+	<!-- End Google Tag Manager -->
 	<!-- Не обов'язковий мета-тег для ІЕ (Internet Explorer) та його версії (Edge (можливі також версії  ..., IE8, IE9, IE10, IE11)) -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20231124141656">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231124181658">
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?_v=20231124141656" />
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css?_v=20231124181658" />
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<!-- Кодування сторінки: ширина області перегляду така ж, як і ширина екрану; зум за замовчуванням 100%; заборона масштабувати контент користувачу -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +57,9 @@
 </head>
 
 <body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5T8SCWML" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<div class="preloader">
 		<svg class="preloader__image" role="img" viewBox="0 0 512 512">
 			<path fill="currentColor" d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z">
@@ -277,7 +298,7 @@
 					<h3 data-watch-threshold="0.5" data-watch-once data-watch>Заплануйте ваш візит заповнивши форму нижче і
 						лікар зв`яжеться <br> з вами якнайшвидше</h3>
 					<div class="plan__form">
-						<form action="files/sendmail/sendmail.php" data-dev data-popup-message="#popup-thanks" enctype="multipart/form-data" class="form" method="POST" id="form-plan">
+						<form action="files/sendmail/sendmail.php" data-dev data-popup-message="#popup-thanks-plan" enctype="multipart/form-data" class="form" method="POST" id="form-plan">
 							<input type="hidden" name="form_subject" value="Тема листа">
 							<h2 class="title">Вкажіть ваше ім’я, телефон та бажану дату для візиту</h2>
 							<label class="form-label">
@@ -895,7 +916,7 @@
 					<div data-watch-threshold="0.5" data-watch-once data-watch class="footer__right">
 						<h3>Залишилися питання?</h3>
 						<div class="footer__block">
-							<form action="files/sendmail/sendmail.php" data-dev data-popup-message="#popup-thanks" enctype="multipart/form-data" class="form" method="POST" id="form-bottom">
+							<form action="files/sendmail/sendmail.php" data-dev data-popup-message="#popup-thanks-center" enctype="multipart/form-data" class="form" method="POST" id="form-bottom">
 								<input type="hidden" name="form_subject" value="Тема листа">
 								<h2 class="title">Поставте їх Уляні Чернієнко</h2>
 								<label class="form-label">
@@ -985,15 +1006,15 @@
 			<div class="popup__content">
 				<button data-close type="button" class="popup__close"></button>
 				<div class="popup__img">🤗</div>
-				<h2>Дякуємо що обрали нас!</h2>
+				<h2 class="popup__title">Дякуємо що обрали нас!</h2>
 				<div class="popup__text">
-					<p>Уляна Богданівна перегляне
-						Ваш запит вже дуже скоро та відразу сконтактується з Вами
+					<p>Уляна Богданівна перегляне <br>
+						Ваш запит вже дуже скоро <br> та відразу сконтактується з Вами
 					</p>
 					<p>
-						Підписуйтеся на сторінки
-						в соцмережах та дізнавайтеся більше
-						про здоров'я зубів та ясен</p>
+						Підписуйтеся на сторінки <br>
+						в соцмережах та дізнавайтеся<br>
+						більше про здоров'я зубів та ясен</p>
 				</div>
 				<div class="popup__social">
 					<a href="https://www.facebook.com/uliana.dentist.lviv" class="_icon-fb" target="_blank"></a>
@@ -1009,13 +1030,13 @@
 				<div class="popup__img">🤗</div>
 				<h2>Дякуємо що обрали нас!</h2>
 				<div class="popup__text">
-					<p>Уляна Богданівна перегляне
-						Ваш запит вже дуже скоро та відразу сконтактується з Вами
+					<p>Уляна Богданівна перегляне <br>
+						Ваш запит вже дуже скоро <br> та відразу сконтактується з Вами
 					</p>
 					<p>
-						Підписуйтеся на сторінки
-						в соцмережах та дізнавайтеся більше
-						про здоров'я зубів та ясен</p>
+						Підписуйтеся на сторінки <br>
+						в соцмережах та дізнавайтеся<br>
+						більше про здоров'я зубів та ясен</p>
 				</div>
 				<div class="popup__social">
 					<a href="https://www.facebook.com/uliana.dentist.lviv" class="_icon-fb" target="_blank"></a>
@@ -1024,9 +1045,31 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/app.min.js?_v=20231124141656"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js?_v=20231124141656"></script>
-	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js?_v=20231124141656"></script>
+	<div id="popup-thanks-plan" aria-hidden="true" class="popup popup1 popup-thanks popup-center">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close"></button>
+				<div class="popup__img">🤗</div>
+				<h2>Дякуємо що обрали нас!</h2>
+				<div class="popup__text">
+					<p>Уляна Богданівна перегляне <br>
+						Ваш запит вже дуже скоро <br> та відразу сконтактується з Вами
+					</p>
+					<p>
+						Підписуйтеся на сторінки <br>
+						в соцмережах та дізнавайтеся<br>
+						більше про здоров'я зубів та ясен</p>
+				</div>
+				<div class="popup__social">
+					<a href="https://www.facebook.com/uliana.dentist.lviv" class="_icon-fb" target="_blank"></a>
+					<a href="https://www.instagram.com/dr_uliana_chernienko/" class="_icon-insta" target="_blank"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20231124181658"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js?_v=20231124181658"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js?_v=20231124181658"></script>
 	<script>
 		$(".slick").slick({
 			slidesToShow: 4,
