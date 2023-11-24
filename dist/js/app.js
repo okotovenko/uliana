@@ -9537,6 +9537,18 @@
                     buttonSubmitBottom.disabled = false;
                 }
             }));
+            let datepicker = document.querySelector(".air-datepicker-overlay");
+            let observer = new MutationObserver((function(mutations) {
+                let buttonDatepickers = document.querySelectorAll(".button");
+                for (let mutation of mutations) if (mutation.type === "attributes") if (datepicker.getAttribute("class") == "air-datepicker-overlay -active-") buttonDatepickers.forEach((element => {
+                    element.disabled = true;
+                })); else buttonDatepickers.forEach((element => {
+                    element.disabled = false;
+                }));
+            }));
+            observer.observe(datepicker, {
+                attributes: true
+            });
         }
         function trackScroll() {
             var goTopBtn = document.querySelector("._icon-up");

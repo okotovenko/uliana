@@ -1088,6 +1088,8 @@ body {
   transition: opacity var(--adp-overlay-transition-duration) var(--adp-overlay-transition-ease), height 0s, width 0s;
 }
 
+/* changes */
+
 .air-datepicker-cell.-day-.-weekend- {
   color: red;
 }
@@ -1107,6 +1109,10 @@ body {
 
 .custom-button-classname-ok:hover {
   color: var(--adp-btn-color);
+}
+
+.air-datepicker-overlay.-active- {
+  pointer-events: none;
 }
 
 body::after {
