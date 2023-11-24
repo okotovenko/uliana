@@ -2676,6 +2676,7 @@ h2.title {
   color: #3E6C8F;
   text-align: center;
   font-family: "Montserrat";
+  margin-bottom: 15px;
   font-style: normal;
   font-weight: 600;
   line-height: 125%;
@@ -3066,6 +3067,10 @@ h2.title {
 .reviews__text-1.animation {
   -webkit-animation: right 0.4s 0.2s linear both;
           animation: right 0.4s 0.2s linear both;
+}
+
+.reviews__text-mob {
+  display: none;
 }
 
 .reviews__slider {
@@ -5406,14 +5411,6 @@ button.swiper-pagination-bullet {
     font-size: 2.25rem;
   }
 
-  .plan__right h3 {
-    margin-bottom: 4.375rem;
-  }
-
-  .plan__right h3 {
-    margin-bottom: 2.1875rem;
-  }
-
   .plan__form {
     max-width: 37.25rem;
   }
@@ -6019,10 +6016,6 @@ button.swiper-pagination-bullet {
 
   .plus__right :nth-child(2).plus__block {
     height: 14.375rem;
-  }
-
-  .plan__right h3 {
-    margin-bottom: 0.9375rem;
   }
 
   .comfort h2 {
@@ -7259,6 +7252,15 @@ button.swiper-pagination-bullet {
     display: inline;
   }
 
+  .reviews__text-desk {
+    display: none;
+  }
+
+  .reviews__text-mob {
+    display: block;
+    font-size: 14px;
+  }
+
   .reasons h2 {
     line-height: 120%;
   }
@@ -7280,9 +7282,9 @@ button.swiper-pagination-bullet {
   .reasons__text span {
     display: block;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
     margin: 0 auto;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .reasons__text span {
@@ -7319,6 +7321,7 @@ button.swiper-pagination-bullet {
   .reasons .mobile p,
   .reasons .mobile span {
     max-width: 100%;
+    font-size: 14px;
   }
 
   .spollers__item {
@@ -7430,6 +7433,10 @@ button.swiper-pagination-bullet {
 
   .benefit__text-mob {
     display: block !important;
+  }
+
+  .benefit__text-mob p {
+    font-size: 14px;
   }
 }
 
@@ -8018,18 +8025,6 @@ button.swiper-pagination-bullet {
 @supports not (font-size: clamp( 1.75rem , 1.3289473684rem  +  0.8771929825vw , 2.25rem )) {
     .plan__right h3 {
       font-size: calc(1.75rem + 0.5 * (100vw - 48rem) / 57);
-    }
-}
-
-@supports (margin-bottom: clamp( 0.625rem , -0.6907894737rem  +  2.7412280702vw , 2.1875rem )) {
-    .plan__right h3 {
-      margin-bottom: clamp( 0.625rem , -0.6907894737rem  +  2.7412280702vw , 2.1875rem );
-    }
-}
-
-@supports not (margin-bottom: clamp( 0.625rem , -0.6907894737rem  +  2.7412280702vw , 2.1875rem )) {
-    .plan__right h3 {
-      margin-bottom: calc(0.625rem + 1.5625 * (100vw - 48rem) / 57);
     }
 }
 
@@ -9152,18 +9147,6 @@ button.swiper-pagination-bullet {
 @supports not (height: clamp( 14.375rem , 9.4338235294rem  +  24.7058823529vw , 35.375rem )) {
     .plus__right :nth-child(2).plus__block {
       height: calc(14.375rem + 21 * (100vw - 20rem) / 85);
-    }
-}
-
-@supports (margin-bottom: clamp( 0.9375rem , 0.1286764706rem  +  4.0441176471vw , 4.375rem )) {
-    .plan__right h3 {
-      margin-bottom: clamp( 0.9375rem , 0.1286764706rem  +  4.0441176471vw , 4.375rem );
-    }
-}
-
-@supports not (margin-bottom: clamp( 0.9375rem , 0.1286764706rem  +  4.0441176471vw , 4.375rem )) {
-    .plan__right h3 {
-      margin-bottom: calc(0.9375rem + 3.4375 * (100vw - 20rem) / 85);
     }
 }
 
