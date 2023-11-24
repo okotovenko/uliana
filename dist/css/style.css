@@ -1111,9 +1111,9 @@ body {
   color: var(--adp-btn-color);
 }
 
-.air-datepicker-overlay.-active- {
-  pointer-events: none;
-}
+/* .air-datepicker-overlay.-active- {
+	pointer-events: none;
+} */
 
 body::after {
   content: "";
@@ -7278,7 +7278,7 @@ button.swiper-pagination-bullet {
   }
 
   .comfort__ellipse p {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 
   .comfort__ellipse {
